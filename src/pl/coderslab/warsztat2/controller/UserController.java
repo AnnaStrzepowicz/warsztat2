@@ -1,6 +1,9 @@
 package pl.coderslab.warsztat2.controller;
 
 
+import pl.coderslab.warsztat2.dao.UserDao;
+import pl.coderslab.warsztat2.model.User;
+
 import java.util.Scanner;
 
 public class UserController {
@@ -30,7 +33,19 @@ public class UserController {
 
 
     private static void addUser() {
-        System.out.println("add user");
+        System.out.println("Add user");
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter username:");
+        final String username = sc.nextLine();
+        System.out.println("Enter email:");
+        final String email = sc.nextLine();
+        System.out.println("Enter passsword:");
+        final String password = sc.nextLine();
+
+        User u = new User(username, email, password);
+        UserDao.create(u);
+        System.out.println("Dodano usera, id= "+u.getId());
     }
 
     private static void editUser() {
